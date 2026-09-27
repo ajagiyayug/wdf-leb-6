@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark-theme');
+  }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <h1>About StudentHub</h1>
+      <p style="margin-top: 0.5rem; color: var(--text-muted);">
+        StudentHub is a comprehensive student management portal designed to streamline academic records, attendance tracking, result management, and administrative updates for students and faculty[cite: 1].
+      </p>
+
+      <div class="card-grid" style="margin-top: 2rem;">
+        <div class="card">
+          <h3>Our Mission</h3>
+          <p style="margin-top: 0.5rem; color: var(--text-muted);">
+            To provide a seamless, digitized platform for students to manage their entire academic lifecycle efficiently[cite: 1].
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Contact Information</h3>
+          <p style="margin-top: 0.5rem; color: var(--text-muted);"><strong>Email:</strong> support@studenthub.edu[cite: 1]</p>
+          <p style="margin-top: 0.25rem; color: var(--text-muted);"><strong>Phone:</strong> +91 44444 22333[cite: 1]</p>
+          <p style="margin-top: 0.25rem; color: var(--text-muted);"><strong>Address:</strong> Student Service Center, Academic Block A5[cite: 1]</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

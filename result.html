@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semester Result - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- html2pdf Library for Client-side Result PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="result.html" class="active">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+      <div class="theme-toggle-container">
+        <span>Dark Theme</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="top-bar">
+        <h1>Semester Performance & Result</h1>
+        <button id="downloadPdfBtn" class="btn btn-primary">
+          📥 Download Result PDF
+        </button>
+      </div>
+
+      <!-- Filter Section -->
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="semesterSelect">Select Semester</label>
+            <select id="semesterSelect" class="form-control">
+              <option value="4">Semester 4 (Current)</option>
+              <option value="3">Semester 3</option>
+              <option value="2">Semester 2</option>
+              <option value="1">Semester 1</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marksheet Print Container (This content will be captured for PDF) -->
+      <div id="resultContainer" class="result-marksheet-card">
+        <!-- Student Info Header -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <div class="marksheet-header">
+            <div>
+              <h2 style="color: var(--primary);">Rahul Sharma</h2>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Roll No: 2024-CS-089 | Course: B.Tech (CSE)</p>
+            </div>
+            <div style="text-align: right;">
+              <span class="badge badge-success" style="font-size: 0.9rem;">STATUS: PASSED</span>
+            </div>
+          </div>
+
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 0;">
+            <div>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">Semester</p>
+              <h3 id="displaySemester" style="color: var(--text-dark);">Semester 4</h3>
+            </div>
+            <div>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">SGPA</p>
+              <h3 id="displaySgpa" style="color: var(--primary);">8.80</h3>
+            </div>
+            <div>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">CGPA</p>
+              <h3 style="color: var(--primary);">8.75</h3>
+            </div>
+            <div>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">Total Credits</p>
+              <h3 id="displayCredits" style="color: var(--text-dark);">17</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subject Marks Table -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Credits</th>
+                <th>Grade Point</th>
+                <th>Letter Grade</th>
+              </tr>
+            </thead>
+            <tbody id="resultTableBody">
+              <!-- Dynamically populated via Javascript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

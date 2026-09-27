@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark-theme');
+  }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html" class="active">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <h1>Submit Report / Complaint</h1>
+
+      <div class="card" style="margin-top: 1.5rem; max-width: 600px;">
+        <form onsubmit="event.preventDefault(); alert('Report submitted successfully!'); this.reset();">
+          <div class="form-group">
+            <label>Report Title</label>
+            <input type="text" class="form-control" placeholder="Issue with Attendance / Fees / Profile" required>
+          </div>
+          <div class="form-group">
+            <label>Describe Your Report Here</label>
+            <textarea class="form-control" rows="5" placeholder="Explain your problem in detail..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Report</button>
+        </form>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

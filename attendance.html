@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html" class="active">Attendance</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="main-content">
+      <div class="top-bar">
+        <h1>Subject-wise Attendance</h1>
+      </div>
+
+      <!-- Add Subject Form Wireframe Form -->
+      <div class="card">
+        <h3>+ Add Subject</h3>
+        <form id="attendance-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div class="form-group">
+            <label>Subject Name</label>
+            <input type="text" id="sub-name" class="form-control" required placeholder="e.g. Database Management">
+          </div>
+          <div class="form-group">
+            <label>Total Classes</label>
+            <input type="number" id="sub-total" class="form-control" required placeholder="40">
+          </div>
+          <div class="form-group">
+            <label>Attended Classes</label>
+            <input type="number" id="sub-attended" class="form-control" required placeholder="36">
+          </div>
+          <div class="form-group" style="align-self: flex-end;">
+            <button type="submit" class="btn btn-primary">Add Record</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Dynamic Data Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Total</th>
+              <th>Attended</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-list">
+            <!-- Dynamic Data Will Load Here via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // LocalStorage based Dynamic Handling
+    let attendanceData = JSON.parse(localStorage.getItem('attendance')) || [
+      { id: 1, name: 'Database Management System', total: 40, attended: 36 },
+      { id: 2, name: 'Operating System', total: 45, attended: 32 }
+    ];
+
+    function renderTable() {
+      const list = document.getElementById('attendance-list');
+      list.innerHTML = '';
+      
+      attendanceData.forEach((item, index) => {
+        const pct = ((item.attended / item.total) * 100).toFixed(1);
+        const status = pct >= 75 ? 'Good' : 'Low';
+        const badgeClass = pct >= 75 ? 'badge-success' : 'badge-danger';
+
+        list.innerHTML += `
+          <tr>
+            <td><strong>${item.name}</strong></td>
+            <td>${item.total}</td>
+            <td>${item.attended}</td>
+            <td>${pct}%</td>
+            <td><span class="badge ${badgeClass}">${status}</span></td>
+            <td>
+              <button class="btn btn-danger" style="padding: 0.2rem 0.5rem; font-size: 0.8rem;" onclick="deleteRecord(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+      localStorage.setItem('attendance', JSON.stringify(attendanceData));
+    }
+
+    document.getElementById('attendance-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('sub-name').value;
+      const total = parseInt(document.getElementById('sub-total').value);
+      const attended = parseInt(document.getElementById('sub-attended').value);
+
+      attendanceData.push({ id: Date.now(), name, total, attended });
+      renderTable();
+      e.target.reset();
+    });
+
+    function deleteRecord(index) {
+      attendanceData.splice(index, 1);
+      renderTable();
+    }
+
+    renderTable();
+    if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark-theme');
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub - Smart Student Management Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  </script>
+  <style>
+    /* ==========================================
+       CSS Variables & Theme Tokens
+       ========================================== */
+    :root { 
+      --primary: #4f46e5; 
+      --primary-hover: #4338ca; 
+      --secondary: #06b6d4; 
+      --bg-main: #f8fafc; 
+      --surface: #ffffff; 
+      --text-dark: #0f172a; 
+      --text-muted: #64748b; 
+      --border: #e2e8f0; 
+      --success: #10b981; 
+      --danger: #ef4444; 
+      --warning: #f59e0b; 
+      --radius: 16px; 
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; 
+    } 
+
+    html.dark-theme {
+      --bg-main: #0f172a;
+      --surface: #1e293b;
+      --text-dark: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: var(--font-main); 
+    } 
+
+    body { 
+      background-color: var(--bg-main); 
+      color: var(--text-dark); 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
+    } 
+
+    /* ==========================================
+       Header & Navigation Bar
+       ========================================== */
+    .header-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    html.dark-theme .header-wrapper {
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .nav-bar { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 1.25rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    } 
+
+    .brand { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.75rem; 
+      font-size: 1.35rem; 
+      font-weight: 800; 
+      color: var(--primary); 
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    } 
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Buttons Styling */ 
+    .btn { 
+      padding: 0.7rem 1.4rem; 
+      border-radius: var(--radius); 
+      border: 1px solid transparent; 
+      font-weight: 600; 
+      font-size: 0.95rem;
+      cursor: pointer; 
+      transition: all 0.25s ease; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      text-decoration: none;
+    } 
+
+    .btn-primary { 
+      background: var(--primary); 
+      color: #ffffff; 
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    } 
+
+    .btn-primary:hover { 
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    } 
+
+    .btn-secondary-outline { 
+      background: var(--surface); 
+      border: 1px solid var(--border); 
+      color: var(--text-dark); 
+    } 
+
+    .btn-secondary-outline:hover { 
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================
+       Hero Section
+       ========================================== */
+    .hero-section { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 4rem; 
+      padding: 5rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    } 
+
+    .hero-text { 
+      flex: 1; 
+    } 
+
+    .badge-pill {
+      display: inline-block;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title { 
+      font-size: 3.25rem; 
+      font-weight: 800; 
+      color: var(--text-dark); 
+      line-height: 1.15; 
+      margin-bottom: 1.25rem; 
+      letter-spacing: -0.03em;
+    } 
+
+    .hero-title span { 
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    } 
+
+    .hero-desc { 
+      font-size: 1.15rem; 
+      color: var(--text-muted); 
+      margin-bottom: 2.25rem; 
+      line-height: 1.6; 
+    } 
+
+    .hero-actions { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+    } 
+
+    .hero-img { 
+      flex: 1; 
+      position: relative;
+    } 
+
+    .hero-img-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-img img { 
+      width: 100%; 
+      max-width: 500px; 
+      display: block;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    } 
+
+    .hero-img-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Floating Card Accent */
+    .floating-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--surface);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .floating-badge .icon {
+      font-size: 1.5rem;
+    }
+
+    .floating-badge .text h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .floating-badge .text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================
+       Features Section
+       ========================================== */
+    .features-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 1.75rem; 
+      max-width: 1200px; 
+      margin: 3rem auto; 
+      padding: 0 2rem; 
+    } 
+
+    .feature-card { 
+      background: var(--surface); 
+      padding: 2.25rem 2rem; 
+      border-radius: var(--radius); 
+      border: 1px solid var(--border); 
+      transition: all 0.3s ease; 
+      position: relative;
+      overflow: hidden;
+    } 
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover { 
+      transform: translateY(-6px); 
+      box-shadow: var(--shadow-md); 
+    } 
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon { 
+      font-size: 2.25rem; 
+      margin-bottom: 1.25rem; 
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: rgba(79, 70, 229, 0.08);
+      border-radius: 12px;
+    } 
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================
+       Stats Section
+       ========================================== */
+    .stats-section { 
+      background: var(--surface); 
+      border-top: 1px solid var(--border); 
+      border-bottom: 1px solid var(--border); 
+      padding: 4rem 2rem; 
+      margin-top: 3rem; 
+    } 
+
+    .stats-container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 2.5rem; 
+      text-align: center; 
+    } 
+
+    .stat-number { 
+      font-size: 2.75rem; 
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    } 
+
+    .stat-primary { color: var(--primary); } 
+    .stat-secondary { color: var(--secondary); } 
+    .stat-success { color: var(--success); } 
+
+    /* ==========================================
+       Footer Section
+       ========================================== */
+    .landing-footer { 
+      text-align: center; 
+      padding: 2.5rem 2rem; 
+      color: var(--text-muted); 
+      font-size: 0.9rem; 
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    } 
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        gap: 3rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .floating-badge {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <div class="header-wrapper">
+    <header class="nav-bar">
+      <a href="#" class="brand">🎓 StudentHub</a>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-secondary-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Register</a>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero Main Section -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <span class="badge-pill">✨ Next-Gen Campus Platform</span>
+      <h1 class="hero-title">Simplify Your <span>Academic Life</span> In One Place</h1>
+      <p class="hero-desc">
+        Welcome to <strong>StudentHub</strong> — a modern portal built to track live attendance, manage semester results, handle online payments, and view campus notices effortlessly.
+      </p>
+      <div class="hero-actions">
+        <a href="register.html" class="btn btn-primary">Get Started Now</a>
+      </div>
+    </div>
+    
+    <div class="hero-img">
+      <div class="hero-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Students studying together">
+      </div>
+      <div class="floating-badge">
+        <span class="icon">⭐</span>
+        <div class="text">
+          <h5>Top Rated Portal</h5>
+          <p>4.9/5 Student Rating</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Portal Features -->
+  <section class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Attendance Tracker</h3>
+      <p class="text-muted">Subject-wise live tracking with low attendance alerts and real-time logs.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📜</div>
+      <h3>Semester Results</h3>
+      <p class="text-muted">Access semester GPAs, review CGPA charts, and download grade sheets anytime.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💳</div>
+      <h3>Online Fee Payment</h3>
+      <p class="text-muted">Seamlessly check fee status, clear pending dues, and download receipts instantly.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📢</div>
+      <h3>Announcements</h3>
+      <p class="text-muted">Stay updated with instant notices posted by your faculty and management.</p>
+    </div>
+  </section>
+
+  <!-- Dynamic Statistics Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div>
+        <h2 class="stat-number stat-primary">12,000+</h2>
+        <p class="text-muted">Active Students</p>
+      </div>
+      <div>
+        <h2 class="stat-number stat-secondary">99.8%</h2>
+        <p class="text-muted">Portal Uptime</p>
+      </div>
+      <div>
+        <h2 class="stat-number stat-success">50+</h2>
+        <p class="text-muted">Academic Departments</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <p>&copy; 2026 StudentHub Management Portal. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

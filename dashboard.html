@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Inline script to prevent screen flicker/flash on page navigation -->
+  <script>
+    (function() {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Notification Banner -->
+  <div id="notificationBanner" class="notification-banner">
+    <span>📢 <strong>Announcement:</strong> Mid-semester exams start next Monday!</span>
+    <button id="closeBannerBtn" class="close-banner-btn">&times;</button>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Mobile Header for Hamburger Menu -->
+    <header class="mobile-header">
+      <div class="brand">🎓 StudentHub</div>
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Navigation">
+        ☰
+      </button>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand brand-desktop">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html">Event & Workshops</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+       
+
+      </ul>
+      
+      <!-- Theme Switcher Toggle -->
+      <div class="theme-toggle-container">
+        <span>🌙 Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="top-bar">
+        <h1>Dashboard Overview</h1>
+        <div class="top-bar-right">
+          <span>Welcome back, <strong>YUG AJAGIYA</strong></span>
+          <button id="openModalBtn" class="btn btn-primary" style="margin-left: 1rem;">View Profile Summary</button>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="card-grid">
+        <div class="card">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Overall CGPA</p>
+          <h2 style="font-size: 2.5rem; color: var(--primary); margin-top: 0.5rem;">8.75</h2>
+        </div>
+        <div class="card">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Overall Attendance</p>
+          <h2 style="font-size: 2.5rem; color: var(--success); margin-top: 0.5rem;">82.5%</h2>
+        </div>
+        <div class="card">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Pending Fees</p>
+          <h2 style="font-size: 2.5rem; color: var(--danger); margin-top: 0.5rem;">₹12,500</h2>
+        </div>
+      </div>
+
+      <!-- Image/Content Slider -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <h3>Campus Highlights & Events</h3>
+        <div class="slider-container">
+          <div class="slider-track" id="sliderTrack">
+            <div class="slide active">
+              <div class="slide-content" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: white;">
+                <h4>🏆 TechFest 2026</h4>
+                <p>Register now for the annual hackathon before Friday!</p>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content" style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white;">
+                <h4>📚 Library Extended Hours</h4>
+                <p>Library is open 24/7 during exam weeks.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content" style="background: linear-gradient(135deg, #10b981, #059669); color: white;">
+                <h4>⚽ Sports Meet Registration</h4>
+                <p>Inter-department tournaments begin next month.</p>
+              </div>
+            </div>
+          </div>
+          <button class="slider-btn prev-btn" id="prevSlide">&lt;</button>
+          <button class="slider-btn next-btn" id="nextSlide">&gt;</button>
+          <div class="slider-indicators" id="sliderIndicators"></div>
+        </div>
+      </div>
+
+      <!-- Collapsible FAQ Section -->
+      <div class="card">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-container" style="margin-top: 1rem;">
+          <div class="faq-item">
+            <button class="faq-question">How do I pay my pending semester fees? <span class="faq-icon">+</span></button>
+            <div class="faq-answer">
+              <p>Navigate to the "Pay Fees" section in the sidebar. You can make payments online via UPI, Credit/Debit cards, or Net Banking.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What is the minimum required attendance? <span class="faq-icon">+</span></button>
+            <div class="faq-answer">
+              <p>Students must maintain at least 75% attendance overall to be eligible to appear for the end-semester examinations.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How can I apply for re-evaluation of my grades? <span class="faq-icon">+</span></button>
+            <div class="faq-answer">
+              <p>Go to the "Semester Result" tab, select your current semester, and click on "Apply for Re-evaluation" within 15 days of result declaration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Popup -->
+  <div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Student Profile Summary</h3>
+        <button id="closeModalBtn" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Name:</strong> YUG AJAGIYA</p>
+        <p><strong>Student ID:</strong> D26DCE151</p>
+        <p><strong>Program:</strong> B.Tech - Computer Engineering</p>
+        <p><strong>Status:</strong> Active Student</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalActionBtn" class="btn btn-primary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

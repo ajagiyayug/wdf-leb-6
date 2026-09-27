@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Fees - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html" class="active">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <h1>Fee Details & Payment</h1>
+
+      <div class="card-grid" style="margin-top: 1.5rem;">
+        <div class="card">
+          <p style="color: var(--text-muted);">Pending Amount</p>
+          <h2 style="color: var(--danger);" id="pending-amt">₹12,500</h2>
+        </div>
+        <div class="card">
+          <p style="color: var(--text-muted);">Penalty Amount</p>
+          <h2>₹0</h2>
+        </div>
+        <div class="card">
+          <p style="color: var(--text-muted);">Last Date</p>
+          <h2>30th Sep 2026</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Fee Status: <span class="badge badge-warning" id="status-badge">Pending</span></h3>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <button class="btn btn-primary" id="pay-btn" onclick="payFees()">Pay Here</button>
+          <button class="btn" style="background:#e2e8f0;" onclick="alert('Downloading Receipt...')">Download Receipt</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function payFees() {
+      document.getElementById('pending-amt').innerText = '₹0';
+      const badge = document.getElementById('status-badge');
+      badge.innerText = 'Paid';
+      badge.className = 'badge badge-success';
+      document.getElementById('pay-btn').disabled = true;
+      alert('Payment successful!');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark-theme');
+  }
+  </script>
+</body>
+</html>
