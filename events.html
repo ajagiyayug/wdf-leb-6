@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events - StudentHub</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function() {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Notification Banner -->
+  <div id="notificationBanner" class="notification-banner">
+    <span>📢 <strong>Announcement:</strong> Mid-semester exams start next Monday!</span>
+    <button id="closeBannerBtn" class="close-banner-btn">&times;</button>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <div class="brand">🎓 StudentHub</div>
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Toggle Navigation">☰</button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand brand-desktop">🎓 StudentHub</div>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="events.html" class="active">Events & Workshops</a></li>
+        <li><a href="result.html">Semester Result</a></li>
+        <li><a href="fees.html">Pay Fees</a></li>
+        <li><a href="announcements.html">Announcements</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+      
+      <!-- Theme Switcher -->
+      <div class="theme-toggle-container">
+        <span>🌙 Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="top-bar">
+        <h1>Campus Events & Workshops</h1>
+        <div class="top-bar-right">
+          <span>Welcome back, <strong>YUG AJAGIYA</strong></span>
+        </div>
+      </div>
+
+      <!-- Search, Filter & Sort Controls -->
+      <div class="card controls-card">
+        <div class="controls-grid">
+          
+          <!-- Search Input -->
+          <div class="form-group">
+            <label for="searchInput">🔍 Search Events</label>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by title, venue, or details...">
+          </div>
+
+          <!-- Category Filter -->
+          <div class="form-group">
+            <label for="categoryFilter">🏷️ Category</label>
+            <select id="categoryFilter" class="form-control">
+              <option value="All">All Categories</option>
+              <option value="Hackathon">Hackathon</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Sports">Sports</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Seminar">Seminar</option>
+            </select>
+          </div>
+
+          <!-- Sort Select -->
+          <div class="form-group">
+            <label for="sortBy">⇅ Sort By</label>
+            <select id="sortBy" class="form-control">
+              <option value="date-asc">Date (Earliest First)</option>
+              <option value="date-desc">Date (Latest First)</option>
+              <option value="title-asc">Title (A - Z)</option>
+              <option value="popular">Popularity (Most Enrolled)</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Events Grid Container -->
+      <div id="eventsContainer" class="card-grid">
+        <p class="loading-text">Loading campus events...</p>
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="pagination-wrapper card">
+        <div class="pagination-info" id="paginationInfo">Showing 0 of 0 events</div>
+        <div class="pagination-controls" id="paginationControls">
+          <!-- Page buttons generated via JavaScript -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Event Details Modal Popup -->
+  <div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Event Title</h3>
+        <button id="closeModalBtn" class="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Event details loaded dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button id="modalActionBtn" class="btn btn-primary">Register Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

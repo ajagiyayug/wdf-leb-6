@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "Smart India Hackathon 2026",
+    "category": "Hackathon",
+    "date": "2026-10-15",
+    "location": "Main Auditorium",
+    "description": "24-hour continuous coding challenge to solve real-world problems.",
+    "enrolled": 150
+  },
+  {
+    "id": 2,
+    "title": "Web Development Workshop",
+    "category": "Workshop",
+    "date": "2026-10-20",
+    "location": "Computer Lab 3",
+    "description": "Learn modern frontend web development using HTML, CSS, JS and React basics.",
+    "enrolled": 85
+  },
+  {
+    "id": 3,
+    "title": "Annual Inter-College Sports Meet",
+    "category": "Sports",
+    "date": "2026-11-05",
+    "location": "University Sports Complex",
+    "description": "Inter-department cricket, football, and track events tournament.",
+    "enrolled": 210
+  },
+  {
+    "id": 4,
+    "title": "Cultural Fest - Rhythm 2026",
+    "category": "Cultural",
+    "date": "2026-12-01",
+    "location": "Open Air Theatre",
+    "description": "Annual cultural fest including music performance, drama, and dance events.",
+    "enrolled": 300
+  },
+  {
+    "id": 5,
+    "title": "AI & Cloud Computing Seminar",
+    "category": "Seminar",
+    "date": "2026-09-28",
+    "location": "Seminar Hall B",
+    "description": "Expert session on Generative AI and cloud deployments by industry leaders.",
+    "enrolled": 120
+  },
+  {
+    "id": 6,
+    "title": "UI/UX Design Bootcamp",
+    "category": "Workshop",
+    "date": "2026-10-05",
+    "location": "Design Studio 2",
+    "description": "Hands-on wireframing and prototyping with Figma for beginners.",
+    "enrolled": 95
+  },
+  {
+    "id": 7,
+    "title": "Robotics & IoT Expo",
+    "category": "Hackathon",
+    "date": "2026-11-12",
+    "location": "Exhibition Center",
+    "description": "Showcase of embedded projects, hardware hacks, and autonomous bots.",
+    "enrolled": 175
+  }
+]
